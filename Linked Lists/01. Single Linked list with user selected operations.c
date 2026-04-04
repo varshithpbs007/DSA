@@ -10,6 +10,7 @@ void addafter(void); // 3
 int length(void); // 4
 void display(void); // 5
 void deletenode(void); // 6
+void reverse(void); // 7
 
 struct node // Global struct type variable(user defined) named node , accessed by all the functions
 { 
@@ -192,6 +193,47 @@ void deletenode(void)
     }
 }
 
+//7
+void reverse(void)
+{
+     int len = length();
+    
+    int i,j,k,temp;
+    i = 0;
+    j = (len-1);
+      
+    struct node *p, *q;
+    
+    if(root == NULL)
+    {
+        printf("List is EMPTY!\n");
+        return;
+    }
+    
+    p = q = root;
+    
+    while(i<j)
+    {
+        k = 0;
+        while(k<j)
+        {
+            q = q->link;
+            k++;
+        }
+        
+        temp = p->data;
+        p->data = q->data;
+        q->data = temp;
+        
+        i++;
+        j--;
+        
+        p = p->link;
+        q = root;
+    }
+    
+}
+
 
 //-------------------------------------------------main function--------------------------------------------------
 void  main()
@@ -207,7 +249,8 @@ void  main()
         printf("4.length\n");
         printf("5.Display\n");
         printf("6.Deletenode\n");
-        printf("7.Quit\n");
+        printf("7.Reverse list\n");
+        printf("8.Quit\n");
 
         printf("Enter your choice\n");
         scanf("%d",&choice);
@@ -227,7 +270,10 @@ void  main()
                     break;
             case 6: deletenode();
                     break;
-            case 7: exit(1);
+            case 7: reverse();
+                    break;
+            
+            case 8: exit(1);
 
             default: printf("INVALID choice\n");
         }
